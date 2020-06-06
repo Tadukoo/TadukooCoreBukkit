@@ -1,10 +1,8 @@
 package com.gmail.realtadukoo.MinecraftAPI.Bukkit;
 
-import java.util.logging.Level;
-
 import com.gmail.realtadukoo.MinecraftAPI.ConsoleManager;
-import com.gmail.realtadukoo.MinecraftAPI.MinecraftFormatting.Color;
-import com.gmail.realtadukoo.MinecraftAPI.MinecraftFormatting.Format;
+import com.gmail.realtadukoo.MinecraftAPI.ConsolePriority;
+import com.gmail.realtadukoo.MinecraftAPI.Message;
 
 public class BukkitConsoleManager extends BukkitManager implements ConsoleManager{
 	
@@ -13,8 +11,8 @@ public class BukkitConsoleManager extends BukkitManager implements ConsoleManage
 	}
 	
 	@Override
-	public void printMessage(String priority, Color color, Format[] otherFormatting, String message){
-		String formattedMessage = formatMan.getFormattedMessage(color, otherFormatting, message);
-		plugin.getLogger().log(Level.INFO, formattedMessage);
+	public void printMessage(ConsolePriority priority, Message message){
+		String formattedMessage = formatMan.getFormattedMessage(message);
+		plugin.getLogger().log(priority.getLogLevel(), formattedMessage);
 	}
 }

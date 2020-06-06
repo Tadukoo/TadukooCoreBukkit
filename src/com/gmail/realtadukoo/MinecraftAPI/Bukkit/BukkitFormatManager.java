@@ -3,6 +3,7 @@ package com.gmail.realtadukoo.MinecraftAPI.Bukkit;
 import org.bukkit.ChatColor;
 
 import com.gmail.realtadukoo.MinecraftAPI.FormatManager;
+import com.gmail.realtadukoo.MinecraftAPI.Message;
 import com.gmail.realtadukoo.MinecraftAPI.MinecraftFormatting.Color;
 import com.gmail.realtadukoo.MinecraftAPI.MinecraftFormatting.Format;
 
@@ -67,15 +68,15 @@ public class BukkitFormatManager implements FormatManager{
 	}
 
 	@Override
-	public String getFormattedMessage(Color color, Format[] otherFormatting, String message){
+	public String getFormattedMessage(Message message){
 		// Convert the formatting to Bukkit formatting
 		String formatting = "";
-		formatting += toChatColor(color);
-		for(Format format: otherFormatting){
+		formatting += toChatColor(message.getColor());
+		for(Format format: message.getOtherFormatting()){
 			formatting += toChatColor(format);
 		}
 		
 		// Return the formatted string
-		return formatting + message;
+		return formatting + message.getMessage();
 	}
 }
